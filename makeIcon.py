@@ -59,6 +59,13 @@ def progress(count, total, suffix=''):
 
 def makeIcon(root, file, overwrite=True):
     data = readJSON()
+    for platform, pValue in data.iteritems(): #iOS, Android, WatchKit, iMessage
+        print(platform)
+        for output, oValue in pValue.iteritems(): # Each Folder
+            #Folder or file
+            print(output)
+            for item, iValue in oValue.iteritems(): # Each File
+                print(item)
 
 def resize(source, dest, width, height=0):
     img = Image.open(source)
@@ -127,11 +134,11 @@ for root, subFolders, files in os.walk("images"):
         
         if (file.endswith('.png') or file.endswith('.jpg')) and os.path.islink(os.path.join(root, file)) == False:
             
-            resize(root, file, int(width), int(height), overwrite)
+            makeIcon(root, file, overwrite)
         if (file.endswith('.ai') or file.endswith('.psd')) and os.path.islink(os.path.join(root, file)) == False:
             aiToPNG(root, file)
             filename = os.path.splitext(file)[0]
-            resize(root, filename+".png", overwrite)
+            makeIcon(root, filename+".png", overwrite)
 
             os.remove(os.path.join(root, filename+".png"))
 
