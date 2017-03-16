@@ -1,0 +1,243 @@
+{
+    "Android": {
+        "mipmap-hdpi": {
+			"file": {
+				name: "ic_launcher.png",
+				width: 72,
+				height: 72
+			}
+		},
+        "mipmap-ldpi": {
+			"file": {
+				name: "ic_launcher.png",
+				width: 36,
+				height: 36
+			}
+		},
+        "mipmap-mdpi": {
+			"file": {
+				name: "ic_launcher.png",
+				width: 48,
+				height: 48
+			}
+		},
+        "mipmap-xhdpi": {
+			"file": {
+				name: "ic_launcher.png",
+				width: 96,
+				height: 96
+			}
+		},
+		"mipmap-xxhdpi": {
+			"file": {
+				name: "ic_launcher.png",
+				width: 144,
+				height: 144
+			}
+		},
+		"mipmap-xxxhdpi": {
+			"file": {
+				name: "ic_launcher.png",
+				width: 192,
+				height: 192
+			}
+		},
+		"file": {
+			name: "playstore-icon.png",
+			width: 512,
+			height: 512
+		}
+    },
+	"iMessage": {
+		"file": {
+			name: "icon-messages-app-27x20@1x.png",
+			width: 27,
+			height: 20
+		},
+		"file": {
+			name: "icon-messages-app-27x20@2x.png",
+			width: 54,
+			height: 40
+		},
+		"file": {
+			name: "icon-messages-app-27x20@3x.png",
+			width: 81,
+			height: 60
+		},
+		"file": {
+			name: "icon-messages-app-iPadAir-67x50@2x.png",
+			width: 134,
+			height: 100
+		},
+		"file": {
+			name: "icon-messages-app-iPadAir-74x55@2x.png",
+			width: 148,
+			height: 110
+		},
+		"file": {
+			name: "icon-messages-app-iPhone-60x45@1x.png",
+			width: 60,
+			height: 45
+		},
+		"file": {
+			name: "icon-messages-app-iPhone-60x45@2x.png",
+			width: 120,
+			height: 90
+		},
+		"file": {
+			name: "icon-messages-app-iPhone-60x45@3x.png",
+			width: 180,
+			height: 135
+		},
+		"file": {
+			name: "icon-messages-app-store-1024x768.png",
+			width: 1024,
+			height: 768
+		},
+		"file": {
+			name: "icon-messages-transcript-32x24@1x.png",
+			width: 32,
+			height: 24
+		},
+		"file": {
+			name: "icon-messages-transcript-32x24@2x.png",
+			width: 64,
+			height: 48
+		},
+		"file": {
+			name: "icon-messages-transcript-32x24@3x.png",
+			width: 96,
+			height: 72
+		}
+    },
+	"iOS": {
+		"file": {
+			name: "iTunesArtwork@1x.png",
+			width: 512,
+			height: 512
+		},
+		"file": {
+			name: "iTunesArtwork@2x.png",
+			width: 1024,
+			height: 1024
+		},
+		"file": {
+			name: "iTunesArtwork@3x.png",
+			width: 1536,
+			height: 1536
+		},
+		"AppIcon.appiconset": {
+			"file": {
+				name: "Icon-App-20x20@1x.png",
+				width: 20,
+				height: 20
+			},
+			"file": {
+				name: "Icon-App-20x20@2x.png",
+				width: 40,
+				height: 40
+			},
+			"file": {
+				name: "Icon-App-20x20@3x.png",
+				width: 60,
+				height: 60
+			},
+			"file": {
+				name: "Icon-App-29x29@1x.png",
+				width: 29,
+				height: 29
+			},
+			"file": {
+				name: "Icon-App-29x29@2x.png",
+				width: 58,
+				height: 58
+			},
+			"file": {
+				name: "Icon-App-29x29@3x.png",
+				width: 87,
+				height: 87
+			},
+			"file": {
+				name: "Icon-App-40x40@1x.png",
+				width: 40,
+				height: 40
+			},
+			"file": {
+				name: "Icon-App-40x40@2x.png",
+				width: 80,
+				height: 80
+			},
+			"file": {
+				name: "Icon-App-40x40@3x.png",
+				width: 120,
+				height: 120
+			},
+			"file": {
+				name: "Icon-App-57x57@1x.png",
+				width: 57,
+				height: 57
+			},
+			"file": {
+				name: "Icon-App-57x57@2x.png",
+				width: 114,
+				height: 114
+			},
+			"file": {
+				name: "Icon-App-60x60@1x.png",
+				width: 60,
+				height: 60
+			},
+			"file": {
+				name: "Icon-App-60x60@2x.png",
+				width: 120,
+				height: 120
+			},
+			"file": {
+				name: "Icon-App-60x60@3x.png",
+				width: 180,
+				height: 180
+			},
+			"file": {
+				name: "Icon-App-72x72@1x.png",
+				width: 72,
+				height: 72
+			},
+			"file": {
+				name: "Icon-App-72x72@2x.png",
+				width: 144,
+				height: 144
+			},
+			"file": {
+				name: "Icon-App-76x76@1x.png",
+				width: 76,
+				height: 76
+			},
+			"file": {
+				name: "Icon-App-76x76@2x.png",
+				width: 152,
+				height: 152
+			},
+			"file": {
+				name: "Icon-App-76x76@3x.png",
+				width: 228,
+				height: 228
+			},
+			"file": {
+				name: "Icon-App-83.5x83.5@2x.png",
+				width: 167,
+				height: 167
+			},
+			"file": {
+				name: "Icon-Small-50x50@1x.png",
+				width: 50,
+				height: 50
+			},
+			"file": {
+				name: "Icon-Small-50x50@2x.png",
+				width: 100,
+				height: 100
+			}
+		},
+    },
+	
+}
