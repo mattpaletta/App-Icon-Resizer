@@ -241,13 +241,11 @@
     },
 	"WatchKit": {
 		"AppIcon.appiconset": {
-			"file": {
-				"name": "Icon-24@2x.png",
+			"Icon-24@2x.png": {
 				"width": 20,
 				"height": 20
 			},
-			"file": {
-				"name": "Icon-27.5@2x.png",
+			"Icon-27.5@2x.png": {
 				"width": 20,
 				"height": 20
 			},

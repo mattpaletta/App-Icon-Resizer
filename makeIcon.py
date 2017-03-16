@@ -7,6 +7,7 @@ import PIL
 from PIL import Image
 import json
 from pprint import pprint
+from shutil import copyfile
 
 def aiToPNG(root, file):
     filename = os.path.join(root, file)
@@ -56,16 +57,80 @@ def progress(count, total, suffix=''):
     sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', suffix))
     sys.stdout.flush()  # As suggested by Rom Ruben
 
+def handleFile(root, file, output, width, height):
+    if width != height:
+        print("NOT A SQUARE!")
+    
+    #print("Resizing")
+    print("WRITING: "+output.split("/")[len(output.split("/"))-1])
+    input = os.path.join(root, file)
+
+    resize(input, output, width, height)
+    
+
 
 def makeIcon(root, file, overwrite=True):
     data = readJSON()
     for platform, pValue in data.iteritems(): #iOS, Android, WatchKit, iMessage
-        print(platform)
-        for output, oValue in pValue.iteritems(): # Each Folder
+        print("PLATFORM: "+platform)
+        for out, oValue in pValue.iteritems(): # Each Folder
             #Folder or file
-            print(output)
-            for item, iValue in oValue.iteritems(): # Each File
-                print(item)
+            print("OUTPUT: "+out)
+            
+            fileext = out.split(".")
+            
+            print(fileext)
+            
+            if len(fileext) > 1 and fileext[1] == "png":
+                #output file here
+                width = oValue["width"]
+                height = oValue["height"]
+                
+                input = os.path.join(root, file)
+                output = "output/"+platform+"/"+out
+    
+                #print(input, output)
+    
+                #Make sure the output folder exists
+                if not os.path.exists("output"):
+                    print("Creating output directory")
+                    os.makedirs("output")
+                
+                # Make sure the sub folder exists
+                if not os.path.exists("output/"+platform):
+                    print("Creating "+platform+" directory")
+                    os.makedirs("output/"+platform)
+                
+                handleFile(root, file, output, width, height)
+            else:
+                for item, iValue in oValue.iteritems(): # Each File
+                    print("ITEM: "+item)
+                    
+                    width = iValue["width"]
+                    height = iValue["height"]
+                    
+                    input = os.path.join(root, file)
+                    output = "output/"+platform+"/"+out+"/"+item
+                    
+                    if not os.path.exists("output"):
+                        print("Creating output directory")
+                        os.makedirs("output")
+                
+                    # Make sure the sub folder exists
+                    if not os.path.exists("output/"+platform):
+                        print("Creating "+platform+" directory")
+                        os.makedirs("output/"+platform)
+                    
+                    if not os.path.exists("output/"+platform+"/"+out):
+                        print("Creating "+out+" directory")
+                        os.makedirs("output/"+platform+"/"+out)
+                    
+                    handleFile(root, file, output, width, height)
+
+        if platform == "iOS" or platform == "WatchKit":
+            # Copy the bundle resources over
+            copyfile("Resources/"+platform+".json", "output/"+platform+"/AppIcon.appiconset/Contents.json")
+
 
 def resize(source, dest, width, height=0):
     img = Image.open(source)
@@ -77,7 +142,7 @@ def resize(source, dest, width, height=0):
         hsize = int((float(img.size[1]) * float(wpercent)))
         img = img.resize((width, hsize), PIL.Image.ANTIALIAS)
 
-        img.save(dest)
+    img.save(dest)
 
 py3 = version_info[0] > 2
 overwrite = True
@@ -129,7 +194,7 @@ for root, subFolders, files in os.walk("images"):
 for root, subFolders, files in os.walk("images"):
     
     for file in files:
-        progress(i, total, "Reading: "+file)
+        #progress(i, total, "Reading: "+file)
         i += 1
         
         if (file.endswith('.png') or file.endswith('.jpg')) and os.path.islink(os.path.join(root, file)) == False:
@@ -144,5 +209,5 @@ for root, subFolders, files in os.walk("images"):
 
     if os.path.exists("log.txt"):
         os.remove("log.txt")
-    progress(total, total)
+    #progress(total, total)
 print("\n")
