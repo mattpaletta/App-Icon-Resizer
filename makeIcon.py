@@ -12,7 +12,14 @@ import logging
 
 class makeIcon():
     def __init__(self):
-        logging.basicConfig(filename='makeIcon.log', level=logging.INFO)
+        root = logging.getLogger()
+        root.setLevel(logging.DEBUG)
+
+        ch = logging.StreamHandler(sys.stdout)
+        ch.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        ch.setFormatter(formatter)
+        root.addHandler(ch)
     
     def aiToPNG(self, root, file):
         filename = os.path.join(root, file)
