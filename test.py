@@ -33,8 +33,9 @@ class MyTest(unittest.TestCase):
                     else:
                         img = Image.open("output/"+root+"/"+size)
                         # Check the image is the correct size
-                        assert(img.size[0] == value3["width"])
-                        assert(img.size[1] == value3["height"])
+                        print value3, fileName
+                        assert(img.size[0] == value3)
+                        assert(img.size[1] == value3)
     
     def test_AI(self):
         import os
@@ -51,16 +52,20 @@ class MyTest(unittest.TestCase):
             assert(os.path.exists("output/"+root))
             for size, value2 in value1.iteritems():
                 assert(os.path.exists("output/"+root+"/"+size))
-                if fileName != "width" and fileName != "height":
-                    assert(os.path.exists("output/"+root+"/"+size+"/"+fileName))
-                    img = Image.open("output/"+root+"/"+size+"/"+fileName)
-                    # Check the image is the correct size
-                    assert(img.size[0] == value3["width"])
-                    assert(img.size[1] == value3["height"])
-                else:
-                    img = Image.open("output/"+root+"/"+size)
-                    # Check the image is the correct size
-                    assert(img.size[0] == value3["width"])
-                    assert(img.size[1] == value3["height"])
+                for fileName, value3 in value2.iteritems():
+                    # Verify the file exists
+                    if fileName != "width" and fileName != "height":
+                        assert(os.path.exists("output/"+root+"/"+size+"/"+fileName))
+                        img = Image.open("output/"+root+"/"+size+"/"+fileName)
+                        # Check the image is the correct size
+                        print value3
+                        assert(img.size[0] == value3["width"])
+                        assert(img.size[1] == value3["height"])
+                    else:
+                        img = Image.open("output/"+root+"/"+size)
+                        # Check the image is the correct size
+                        print value3, fileName
+                        assert(img.size[0] == value3)
+                        assert(img.size[1] == value3)
 
 unittest.main()
