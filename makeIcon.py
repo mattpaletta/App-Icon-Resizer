@@ -8,8 +8,12 @@ from PIL import Image
 import json
 from pprint import pprint
 from shutil import copyfile
-    
+import logging
+
 class makeIcon():
+    def __ini__():
+        logging.basicConfig(filename='makeIcon.log', level=logging.INFO)
+    
     def aiToPNG(self, root, file):
         filename = os.path.join(root, file)
         fileext = os.path.splitext(file)[1]
@@ -23,7 +27,7 @@ class makeIcon():
             didRename = True
         
         #print(filename, fileN, fileext)
-        
+        logging.info()
         os.system("gs -dNOPAUSE -dBATCH -sDEVICE=pngalpha -r300 -sOutputFile="+os.path.join(root, fileN+".png")+" "+os.path.join(root, fileN+fileext)+ "> log.txt")
 
         if didRename == True: # if did rename, undo the actions
@@ -61,12 +65,12 @@ class makeIcon():
 
     def handleFile(self, root, file, output, width, height):
         if width != height:
-            print("NOT A SQUARE!")
+            #print("NOT A SQUARE!")
         
         #print("Resizing")
         #print("WRITING: "+output.split("/")[len(output.split("/"))-1])
         input = os.path.join(root, file)
-
+        
         self.resize(input, output, width, height)
     
 
@@ -137,13 +141,16 @@ class makeIcon():
     def resize(self, source, dest, width, height=0):
         img = Image.open(source)
         
-        wpercent = width / float(img.size[0])
-        if height > 0:
-            hsize = int(height / float(img.size[1]))
-        else:
-            hsize = int((float(img.size[1]) * float(wpercent)))
-            img = img.resize((width, hsize), PIL.Image.ANTIALIAS)
-
+        #wpercent = width / float(img.size[0])
+        #if height != width:
+        #hsize = int(height / float(img.size[1]))
+        #else:
+        #hsize = int((float(img.size[1]) * float(wpercent)))
+        
+        assert(width > 0)
+        assert(height > 0)
+        # We already know the new size, so just set it to that.
+        img = img.resize((width, height), PIL.Image.ANTIALIAS)
         img.save(dest)
             
     def createImages(self, isTest=False):
