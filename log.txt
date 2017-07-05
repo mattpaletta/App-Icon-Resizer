@@ -1,5 +1,0 @@
-GPL Ghostscript 9.21 (2017-03-16)
-Copyright (C) 2017 Artifex Software, Inc.  All rights reserved.
-This software comes with NO WARRANTY: see the file PUBLIC for details.
-Processing pages 1 through 1.
-Page 1
