@@ -6,8 +6,11 @@ class MyTest(unittest.TestCase):
     
     def test_PNG(self):
         # Copy test file into directory
+        import os
         from shutil import copyfile
-        copyfile("tests/Blue.png", "images/BluePNG.png")
+        if not os.path.exists("images"):
+            os.makedirs("images")
+        copyfile("tests/Blue.ai", "images/BlueAI.ai")
         icon = makeIcon()
         icon.createImages(True)
         with open('IconSizes.json') as data_file:
@@ -27,6 +30,7 @@ class MyTest(unittest.TestCase):
                     assert(img.size[1] == value3["height"])
     
     def test_AI(self):
+        import os
         from shutil import copyfile
         if not os.path.exists("images"):
             os.makedirs("images")

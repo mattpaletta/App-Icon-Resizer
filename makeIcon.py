@@ -11,7 +11,7 @@ from shutil import copyfile
 import logging
 
 class makeIcon():
-    def __ini__():
+    def __init__(self):
         logging.basicConfig(filename='makeIcon.log', level=logging.INFO)
     
     def aiToPNG(self, root, file):
