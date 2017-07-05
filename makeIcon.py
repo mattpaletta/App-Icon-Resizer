@@ -27,7 +27,7 @@ class makeIcon():
             didRename = True
         
         #print(filename, fileN, fileext)
-        logging.info()
+        logging.info("Converting AI to PNG before processing")
         os.system("gs -dNOPAUSE -dBATCH -sDEVICE=pngalpha -r300 -sOutputFile="+os.path.join(root, fileN+".png")+" "+os.path.join(root, fileN+fileext)+ "> log.txt")
 
         if didRename == True: # if did rename, undo the actions
@@ -35,6 +35,7 @@ class makeIcon():
             os.rename(os.path.join(root,file), os.path.join(root,fileN+fileext))
 
     def readJSON(self):
+        logging.info("Reading icon sizes")
         with open('IconSizes.json') as data_file:
             return json.load(data_file)
 
@@ -65,6 +66,7 @@ class makeIcon():
 
     def handleFile(self, root, file, output, width, height):
         if width != height:
+            logging.debug("Output is not a square")
             #print("NOT A SQUARE!")
         
         #print("Resizing")
@@ -72,7 +74,6 @@ class makeIcon():
         input = os.path.join(root, file)
         
         self.resize(input, output, width, height)
-    
 
 
     def makeIcon(self, root, file, overwrite=True):
@@ -82,10 +83,9 @@ class makeIcon():
             for out, oValue in pValue.iteritems(): # Each Folder
                 #Folder or file
                 #print("OUTPUT: "+out)
+                logging.info("Processing: "+out)
                 
                 fileext = out.split(".")
-                
-                print(fileext)
                 
                 if len(fileext) > 1 and fileext[1] == "png":
                     #output file here
@@ -99,18 +99,18 @@ class makeIcon():
                     
                     #Make sure the output folder exists
                     if not os.path.exists("output"):
-                        print("Creating output directory")
+                        logging.info("Creating output directory")
                         os.makedirs("output")
                     
                     # Make sure the sub folder exists
                     if not os.path.exists("output/"+platform):
-                        print("Creating "+platform+" directory")
+                        logging.info("Creating "+platform+" directory")
                         os.makedirs("output/"+platform)
                     
                     self.handleFile(root, file, output, width, height)
                 else:
                     for item, iValue in oValue.iteritems(): # Each File
-                        print("ITEM: "+item)
+                        #print("ITEM: "+item)
                         
                         width = iValue["width"]
                         height = iValue["height"]
@@ -119,22 +119,23 @@ class makeIcon():
                         output = "output/"+platform+"/"+out+"/"+item
                         
                         if not os.path.exists("output"):
-                            print("Creating output directory")
+                            logging.info("Creating output directory")
                             os.makedirs("output")
                         
                         # Make sure the sub folder exists
                         if not os.path.exists("output/"+platform):
-                            print("Creating "+platform+" directory")
+                            logging.info("Creating "+platform+" directory")
                             os.makedirs("output/"+platform)
                         
                         if not os.path.exists("output/"+platform+"/"+out):
-                            print("Creating "+out+" directory")
+                            logging.info("Creating "+out+" directory")
                             os.makedirs("output/"+platform+"/"+out)
                         
                         self.handleFile(root, file, output, width, height)
 
             if platform == "iOS" or platform == "WatchKit":
                 # Copy the bundle resources over
+                logging.info("Copying resource files")
                 copyfile("Resources/"+platform+".json", "output/"+platform+"/AppIcon.appiconset/Contents.json")
 
 
@@ -150,6 +151,7 @@ class makeIcon():
         assert(width > 0)
         assert(height > 0)
         # We already know the new size, so just set it to that.
+        logging.info("Performing resize of image")
         img = img.resize((width, height), PIL.Image.ANTIALIAS)
         img.save(dest)
             
@@ -162,27 +164,21 @@ class makeIcon():
 
 
         while not os.path.exists("images"):
-            print("Creating images folder...")
+            logging.info("Creating images folder...")
             os.makedirs("images")
             print("It seems there was no images directory here.  We just created one for you!  Drag any images you would like to use in that folder, then restart the program.")
-            if isTest:
-                # Copy test file into directory
-                from shutil import copyfile
-                copyfile("tests/sampleImage.png", "images/sampleImage.png")
-                copyfile("tests/sampleImage.ai", "images/sampleImage.ai")
-            
-            else:
+            if isTest == False:
                 exit()
 
         #continue from while loop
-        print("Input folder found")
+        logging.info("Input folder found")
 
 
         if not os.path.exists("output"):
-            print("Creating output folder...")
+            logging.info("Creating output folder...")
             os.makedirs("output")
 
-        print("Output folder found\n")
+        logging.info("Output folder found\n")
 
 
         if isTest:

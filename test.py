@@ -28,6 +28,8 @@ class MyTest(unittest.TestCase):
     
     def test_AI(self):
         from shutil import copyfile
+        if not os.path.exists("images"):
+            os.makedirs("images")
         copyfile("tests/Blue.ai", "images/BlueAI.ai")
         icon = makeIcon()
         icon.createImages(True)
