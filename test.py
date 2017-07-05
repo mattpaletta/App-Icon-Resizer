@@ -1,6 +1,7 @@
 import unittest
 from makeIcon import makeIcon
 import json
+from PIL import Image
 
 class MyTest(unittest.TestCase):
     

@@ -3,7 +3,6 @@ import os
 import sys
 import time
 from sys import version_info
-import PIL
 from PIL import Image
 import json
 from pprint import pprint
@@ -85,7 +84,8 @@ class makeIcon():
 
     def makeIcon(self, root, file, overwrite=True):
         data = self.readJSON()
-        for platform, pValue in data.iteritems(): #iOS, Android, WatchKit, iMessage
+        
+        for platform, pValue in data.items(): #iOS, Android, WatchKit, iMessage
             #print("PLATFORM: "+platform)
             for out, oValue in pValue.iteritems(): # Each Folder
                 #Folder or file
@@ -159,7 +159,7 @@ class makeIcon():
         assert(height > 0)
         # We already know the new size, so just set it to that.
         logging.info("Performing resize of image")
-        img = img.resize((width, height), PIL.Image.ANTIALIAS)
+        img = img.resize((width, height), Image.ANTIALIAS)
         img.save(dest)
             
     def createImages(self, isTest=False):
