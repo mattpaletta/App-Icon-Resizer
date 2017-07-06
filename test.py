@@ -18,11 +18,11 @@ class MyTest(unittest.TestCase):
             expectedOutput = json.load(data_file)
         
         # Check every level of the directory structure
-        for root, value1 in expectedOutput.iteritems():
+        for root, value1 in expectedOutput.items():
             assert(os.path.exists("output/"+root))
-            for size, value2 in value1.iteritems():
+            for size, value2 in value1.items():
                 assert(os.path.exists("output/"+root+"/"+size))
-                for fileName, value3 in value2.iteritems():
+                for fileName, value3 in value2.items():
                     # Verify the file exists
                     if fileName != "width" and fileName != "height":
                         assert(os.path.exists("output/"+root+"/"+size+"/"+fileName))
@@ -46,11 +46,11 @@ class MyTest(unittest.TestCase):
         with open('IconSizes.json') as data_file:
             expectedOutput = json.load(data_file)
         # Check every level of the directory structure
-        for root, value1 in expectedOutput.iteritems():
+        for root, value1 in expectedOutput.items():
             assert(os.path.exists("output/"+root))
-            for size, value2 in value1.iteritems():
+            for size, value2 in value1.items():
                 assert(os.path.exists("output/"+root+"/"+size))
-                for fileName, value3 in value2.iteritems():
+                for fileName, value3 in value2.items():
                     # Verify the file exists
                     if fileName != "width" and fileName != "height":
                         assert(os.path.exists("output/"+root+"/"+size+"/"+fileName))

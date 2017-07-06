@@ -87,7 +87,7 @@ class makeIcon():
         
         for platform, pValue in data.items(): #iOS, Android, WatchKit, iMessage
             #print("PLATFORM: "+platform)
-            for out, oValue in pValue.iteritems(): # Each Folder
+            for out, oValue in pValue.items(): # Each Folder
                 #Folder or file
                 #print("OUTPUT: "+out)
                 logging.info("Processing: "+out)
@@ -116,7 +116,7 @@ class makeIcon():
                     
                     self.handleFile(root, file, output, width, height)
                 else:
-                    for item, iValue in oValue.iteritems(): # Each File
+                    for item, iValue in oValue.items(): # Each File
                         #print("ITEM: "+item)
                         
                         width = iValue["width"]
